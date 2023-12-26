@@ -1,0 +1,37 @@
+{% extends 'meetups/base/base.html' %}
+
+{% load static %}
+
+{% block styling %}
+{% endblock %}
+
+<!-- navbar -->
+{% block navbar %}
+{% include 'meetups/includes/navbar.html' %}
+{% endblock %}
+
+
+<!-- events -->
+{% block events-block %}
+<section>
+  <div class=" row g-4 py-5 row-cols-1 row-cols-lg-3 justify-content-center">
+    {% for event in events %}
+    <div class="px-4 py-5 my-5 text-center col-lg-3 col-md-6 col-sm-12 ">
+      <div class="">
+        <img src="{{ event.image.url }}" class="d-block mx-lg-auto img-fluid" alt="{{ event.title }}"
+          width="300" height="200" loading="lazy">
+      </div>
+
+      <h1 class="display-5 fw-bold text-body-emphasis">{{ event.title }}</h1>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4"> {{ event.description }}</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <button  type="button" class="btn btn-outline-secondary btn-lg px-4"><a href="{% url 'event-details' event.slug %}"> more details</a> </button>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</section>
+{% endblock %}
