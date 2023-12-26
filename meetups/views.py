@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from .models import Event
+from .models import Event, Paticipants
 from .forms import RegistrationForm
 
 
@@ -20,11 +20,20 @@ def event_details(request, event_slug):
     else:
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            participant = form.save()
+            participant_email = form.cleaned_data['email']
+            participant_name = form.cleaned_data['name']
+            participant, _  = Paticipants.objects.get_or_create(name=participant_name, email=participant_email)
             selected_event.participants.add(participant)
-            return redirect('home-page')
+            return redirect('successful-registration', event_slug=event_slug)
 
     return render(request, 'meetups/event_details.html', {
         'event': selected_event,
         'form': form
+    })
+
+
+def SuccessfulRegistratiion(request, event_slug):
+    event = Event.objects.get(slug=event_slug)
+    return render(request, 'meetups/success.html', {
+        'event': event,
     })
