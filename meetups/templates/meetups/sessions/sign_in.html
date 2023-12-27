@@ -1,48 +1,13 @@
-<html lang="en" data-bs-theme="dark"><head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon icon-->
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/favicon-16x16.png">
-    <link rel="manifest" href="./assets/images/favicon/site.webmanifest">
-    <link rel="mask-icon" href="./assets/images/favicon/block-safari-pinned-tab.svg" color="#8b3dff">
-    <link rel="shortcut icon" href="./assets/images/favicon/favicon.ico">
-    <meta name="msapplication-TileColor" content="#8b3dff">
-    <meta name="msapplication-config" content="./assets/images/favicon/tile.xml">
+{% extends 'meetups/base/base.html' %}
 
-    <!-- Color modes -->
-    <script src="./assets/js/vendors/color-modes.js"></script>
+{% load static %}
 
-    <!-- Libs CSS -->
-    <link href="./assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
-    <link href="./assets/libs/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
 
-    <!-- Scroll Cue -->
-    <link rel="stylesheet" href="./assets/libs/scrollcue/scrollCue.css">
+    {% block navbar %}
+        {% include 'meetups/includes/navbar.html' %}
+    {% endblock %}
 
-    <!-- Box icons -->
-    <link rel="stylesheet" href="./assets/fonts/css/boxicons.min.css">
-
-    <!-- Theme CSS -->
-    <link rel="stylesheet" href="./assets/css/theme.min.css">
-    <!-- Analytics Code -->
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-M8S4MT3EYG"></script>
-    <script>
-       window.dataLayer = window.dataLayer || [];
-       function gtag() {
-          dataLayer.push(arguments);
-       }
-       gtag("js", new Date());
-
-       gtag("config", "G-M8S4MT3EYG");
-    </script>
-
-    <title>Sign In - Responsive Website Template | Block</title>
- </head>
-
- <body>
+    {% block events-block %}
     <main>
        <div class="pattern-square"></div>
        <!--Pageheader start-->
@@ -51,11 +16,10 @@
              <div class="row">
                 <div class="col-xl-4 offset-xl-4 col-md-12 col-12">
                    <div class="text-center">
-                      <a href="index.html"><img src="./assets/images/logo/brand-icon.svg" alt="brand" class="mb-3"></a>
                       <h1 class="mb-1">Welcome Back</h1>
                       <p class="mb-0">
                          Don’t have an account yet?
-                         <a href="./signup.html" class="text-primary">Register here</a>
+                         <a href="{% url 'sign-up' %}" class="text-primary">Register here</a>
                       </p>
                    </div>
                 </div>
@@ -127,60 +91,11 @@
                    </div>
                 </div>
              </div>
-             <div class="row">
-                <div class="col-lg-12">
-                   <div class="text-center">
-                      <div class="small mb-3 mb-lg-0 text-body-tertiary">
-                         Copyright ©
-                         <span class="text-primary"><a href="#">Block Bootstrap 5 Theme</a></span>
-                         | Designed by
-                         <span class="text-primary"><a href="#">CodesCandy</a></span>
-                      </div>
-                   </div>
-                </div>
-             </div>
           </div>
        </section>
        <!--Sign up end-->
-       <div class="position-absolute end-0 bottom-0 m-4">
-          <div class="dropdown">
-             <button class="btn btn-light btn-icon rounded-circle d-flex align-items-center" type="button" aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
-                <i class="bi theme-icon-active"><i class="bi theme-icon bi-moon-stars-fill"></i></i>
-                <span class="visually-hidden bs-theme-text">Toggle theme</span>
-             </button>
-             <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bs-theme-text">
-                <li>
-                   <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
-                      <i class="bi theme-icon bi-sun-fill"></i>
-                      <span class="ms-2">Light</span>
-                   </button>
-                </li>
-                <li>
-                   <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="dark" aria-pressed="true">
-                      <i class="bi theme-icon bi-moon-stars-fill"></i>
-                      <span class="ms-2">Dark</span>
-                   </button>
-                </li>
-                <li>
-                   <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="false">
-                      <i class="bi theme-icon bi-circle-half"></i>
-                      <span class="ms-2">Auto</span>
-                   </button>
-                </li>
-             </ul>
-          </div>
-       </div>
+
     </main>
 
-    <!-- Libs JS -->
-    <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/libs/simplebar/dist/simplebar.min.js"></script>
-    <script src="./assets/libs/headhesive/dist/headhesive.min.js"></script>
+{% endblock %}
 
-    <!-- Theme JS -->
-    <script src="./assets/js/theme.min.js"></script>
-
-    <script src="./assets/js/vendors/password.js"></script>
-
-
-</body></html>

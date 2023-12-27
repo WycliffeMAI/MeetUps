@@ -40,8 +40,8 @@ def SuccessfulRegistratiion(request, event_slug):
         'event': event,
     })
 
-def SignIn(request, ):
-    return render(request, 'meetups/sessions/sign_up.html')
+def SignInPage(request, ):
+    return render(request, 'meetups/sessions/sign_in.html')
 
 def SignUp(request, ):
     return render(request, 'meetups/sessions/sign_up.html')
