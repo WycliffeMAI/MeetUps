@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import Event, Paticipants
@@ -24,7 +25,8 @@ def event_details(request, event_slug):
             participant_name = form.cleaned_data['name']
             participant, _  = Paticipants.objects.get_or_create(name=participant_name, email=participant_email)
             selected_event.participants.add(participant)
-            return redirect('successful-registration', event_slug=event_slug)
+            reverse_to = reverse('successful-registration', args= [event_slug])
+            return redirect(reverse_to)
 
     return render(request, 'meetups/event_details.html', {
         'event': selected_event,
