@@ -39,3 +39,9 @@ def SuccessfulRegistratiion(request, event_slug):
     return render(request, 'meetups/success.html', {
         'event': event,
     })
+
+def SignIn(request, ):
+    return render(request, 'meetups/sessions/sign_up.html')
+
+def SignUp(request, ):
+    return render(request, 'meetups/sessions/sign_up.html')

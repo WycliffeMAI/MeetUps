@@ -12,15 +12,15 @@
 
               <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 text-dark">
                 <li><a href="#" class="nav-link px-2 link-secondary">Find Event</a></li>
-                <li><a href="#" class="nav-link px-2">Create Events</a></li>
-                <li><a href="#" class="nav-link px-2">Help Center</a></li>
-                <li><a href="#" class="nav-link px-2">FAQs</a></li>
-                <li><a href="#" class="nav-link px-2">About</a></li>
+                <li><a href="#" class="nav-link px-2 text-dark">Create Events</a></li>
+                <li><a href="#" class="nav-link px-2 text-dark">Help Center</a></li>
+                <li><a href="#" class="nav-link px-2 text-dark">FAQs</a></li>
+                <li><a href="#" class="nav-link px-2 text-dark">About</a></li>
               </ul>
 
               <div class="col-md-3 text-end">
-                <button type="button" class="btn btn-outline-primary me-2">Login</button>
-                <button type="button" class="btn btn-primary">Sign-up</button>
+                <button type="button" class="btn btn-outline-secondary me-2"><a href="{% url 'sign-in' %}" class="text-decoration-none text-dark" >Login</a></button>
+                <button type="button" class="btn btn-outline-secondary"><a href="{% url 'sign-up' %}" class="text-decoration-none text-dark">Sign-up</a></button>
               </div>
 
               <div class="dropdown text-end">
