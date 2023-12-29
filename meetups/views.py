@@ -1,19 +1,22 @@
+import django
 from django.urls import reverse
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import Event, Paticipants
 from .forms import RegistrationForm, CreateUserForm
-from django.contrib.auth.forms import UserCreationForm
-
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required(login_url='events-sign-in')
 def home_page(request):
     events = Event.objects.all()
     return render(request, 'meetups/index.html', {
         'events': events
     })
 
-
+@login_required(login_url='events-sign-in')
 def event_details(request, event_slug):
     selected_event = Event.objects.get(slug=event_slug)
     if request.method == 'GET':
@@ -43,20 +46,46 @@ def SuccessfulRegistratiion(request, event_slug):
 
 
 def SignUp(request, ):
-    if request.method == 'GET':
-        form = CreateUserForm()
-        context = {'form':form}
-
+    if request.user.is_authenticated:
+        return redirect('home-page')
     else:
-        form = CreateUserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('events-sign-in')
+        if request.method == 'GET':
+            form = CreateUserForm()
 
-    return render(request, 'meetups/sessions/signup.html', context)
+
+        else:
+            form = CreateUserForm(request.POST)
+            if form.is_valid():
+                form.save()
+                user = form.cleaned_data.get('username')
+                messages.success(request, 'You successfully signed up for meetups ' + user)
+                return redirect('events-sign-in')
+
+        return render(request, 'meetups/sessions/signup.html', {'form':form})
 
 
 def SignInPage(request, ):
-    return render(request, 'meetups/sessions/signin.html')
+    if request.user.is_authenticated:
+        return redirect('home-page')
+    else:
+
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect('home-page')
+            else:
+                messages.info(request, 'username or password is incorrect!')
+
+            user = authenticate(request, username=username, password=password)
+        return render(request, 'meetups/sessions/login.html')
+
+def logoutuser(request, ):
+    logout(request)
+    return redirect('events-sign-in')
 
 

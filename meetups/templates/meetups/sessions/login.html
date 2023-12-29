@@ -2,16 +2,13 @@
 
 {% load static %}
 
-{% load crispy_forms_tags %}
-{% load crispy_forms_filters %}
-
 
 {% block navbar %}
 {% include 'meetups/includes/navbar.html' %}
 {% endblock %}
 
 {% block events-block %}
-<main class="position-relative">
+<main>
    <div class="pattern-square"></div>
    <!--Pageheader start-->
    <section class="py-5 py-lg-8">
@@ -19,8 +16,11 @@
          <div class="row">
             <div class="col-xl-4 offset-xl-4 col-md-12 col-12">
                <div class="text-center">
-                  <h1 class="mb-1">Create Account</h1>
-                  <!-- <p class="mb-0">Sign up now and get free account instant.</p> -->
+                  <h1 class="mb-1">Welcome Back</h1>
+                  <p class="mb-0">
+                     Don’t have an account yet?
+                     <a href="{% url 'sign-up' %}" class="text-primary">Register here</a>
+                  </p>
                </div>
             </div>
          </div>
@@ -30,59 +30,52 @@
    <!--Sign up start-->
    <section>
       <div class="container">
-         <div class="row justify-content-center mb-6">
+         <div class="row justify-content-center">
             <div class="col-xl-5 col-lg-6 col-md-8 col-12">
-               <div class="card shadow-sm mb-3">
+               <div class="card shadow-sm mb-6">
                   <div class="card-body">
-                     <form class="needs-validation mb-6" novalidate="" method="POST" action="">
+                     <form class="needs-validation mb-6" novalidate="" method="POST">
                         {% csrf_token %}
                         <div class="mb-3">
-                           {{ form.username|as_crispy_field}}
-                           <div class="invalid-feedback">Please enter full name</div>
-                        </div>
-                        <div class="mb-3">
-                           {{ form.fullname|as_crispy_field}}
-                           <div class="invalid-feedback">Please enter full name</div>
-                        </div>
-
-                        <div class="mb-3">
-                           {{ form.email|as_crispy_field }}
+                           <label for="signinEmailInput" class="form-label">
+                              username
+                              <span class="text-danger">*</span>
+                           </label>
+                           <input type="email" class="form-control" id="signinEmailInput" required="" name="username">
                            <div class="invalid-feedback">Please enter email.</div>
                         </div>
                         <div class="mb-3">
-                           {{ form.password1|as_crispy_field }}
-                           <div class="invalid-feedback">Please enter password.</div>
+                           <label for="formSignUpPassword" class="form-label">Password</label>
+                           <div class="password-field position-relative">
+                              <input type="password" class="form-control fakePassword" id="formSignUpPassword"
+                                 required="" name="password">
+                              <span><i class="bi bi-eye-slash passwordToggler"></i></span>
+                              <div class="invalid-feedback">Please enter password.</div>
+                           </div>
                         </div>
 
-                        <div class="mb-3">
-                           {{ form.password2|as_crispy_field }}
-                           <div class="invalid-feedback">Please enter password.</div>
-                        </div>
-                  </div>
-                  <!-- {{ form.errors }} -->
+                        {% for message in messages %}
+                        <p class="text-danger">{{ message }}</p>
+                        {% endfor %}
 
-                  <div class="mb-3 p-4">
-                     <div class="mb-4 d-flex align-items-center justify-content-between">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" id="signupCheckTextCheckbox">
-                           <label class="form-check-label ms-2" for="signupCheckTextCheckbox">
-                              <a href="#">Terms of Use</a>
-                              &amp;
-                              <a href="#">Privacy Policy</a>
-                           </label>
-                        </div>
-                     </div>
-                  </div>
+                        <div class="mb-4 d-flex align-items-center justify-content-between">
+                           <div class="form-check">
+                              <input class="form-check-input" type="checkbox" id="rememberMeCheckbox">
+                              <label class="form-check-label" for="rememberMeCheckbox">Remember me</label>
+                           </div>
 
-                  <div class="d-grid px-5">
-                     <button class="btn btn-primary" type="submit">Sign Up</button>
-                  </div>
-                  </form>
-                  <div class="align-text-center px-5">
-                     <span class="text-center">Sign up with your social network.</span>
+                           <div><a href="../forget-password.html" class="text-primary">Forgot Password</a></div>
+                        </div>
+
+                        <div class="d-grid">
+                           <button class="btn btn-primary" type="submit">Sign In</button>
+                        </div>
+                     </form>
+
+                     <span>Sign in with your social network.</span>
                      <div class="d-grid mt-3">
                         <a href="#" class="btn btn-google">
-                           <span class="me-2">
+                           <span class="me-3">
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-google" viewBox="0 0 16 16">
                                  <path
@@ -93,9 +86,9 @@
                            Continue with Google
                         </a>
                      </div>
-                     <div class="d-grid m-2">
+                     <div class="d-grid mt-2">
                         <a href="#" class="btn btn-facebook">
-                           <span class="me-2">
+                           <span class="me-3">
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-facebook" viewBox="0 0 16 16">
                                  <path
@@ -109,15 +102,11 @@
                   </div>
                </div>
             </div>
-
-            <span class="text-center">
-               Already have an account?
-               <a href="{% url 'events-sign-in' %}" class="text-primary">Sign in here.</a>
-            </span>
          </div>
       </div>
-
-      </div>
    </section>
+   <!--Sign up end-->
+
 </main>
+
 {% endblock %}
