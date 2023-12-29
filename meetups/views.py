@@ -89,3 +89,5 @@ def logoutuser(request, ):
     return redirect('events-sign-in')
 
 
+def userProfile(request, ):
+    return render(request, 'meetups/user.html')
