@@ -2,7 +2,8 @@ from django.urls import reverse
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import Event, Paticipants
-from .forms import RegistrationForm
+from .forms import RegistrationForm, CreateUserForm
+from django.contrib.auth.forms import UserCreationForm
 
 
 # Create your views here.
@@ -40,8 +41,22 @@ def SuccessfulRegistratiion(request, event_slug):
         'event': event,
     })
 
-def SignInPage(request, ):
-    return render(request, 'meetups/sessions/sign_in.html')
 
 def SignUp(request, ):
-    return render(request, 'meetups/sessions/sign_up.html')
+    if request.method == 'GET':
+        form = CreateUserForm()
+        context = {'form':form}
+
+    else:
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('events-sign-in')
+
+    return render(request, 'meetups/sessions/signup.html', context)
+
+
+def SignInPage(request, ):
+    return render(request, 'meetups/sessions/signin.html')
+
+
