@@ -5,5 +5,5 @@
     "editor.fontSize": 15,
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
-    "files.autoSave": "afterDelay"
+    "files.autoSave": "onFocusChange"
 }
