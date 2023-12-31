@@ -127,3 +127,12 @@ MEDIA_URL = '/files/'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+
+#SMTP Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USER_TLS = True
+EMAIL_HOST_USER = 'ivanovsin11@gmail.com'
+EMAIL_HOST_PASSWORD = 'Viv773oklife'

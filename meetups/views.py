@@ -1,3 +1,4 @@
+from re import template
 from django.urls import reverse
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
@@ -87,3 +88,7 @@ def logoutuser(request, ):
 
 def userProfile(request, ):
     return render(request, 'meetups/user.html')
+
+
+class PasswordResetView:
+    template_name = 'registration/password_reset_form.html'
