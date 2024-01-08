@@ -7,11 +7,12 @@ from .forms import RegistrationForm, CreateUserForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .decorators import unauthorisedUser
+from .decorators import unauthorisedUser, allowed_user
 from django.contrib.auth.models import Group, User
 
 # Create your views here.
 @login_required(login_url='events-sign-in')
+@allowed_user(allowed_roles=['admin', ])
 def home_page(request):
     events = Event.objects.all()
     return render(request, 'meetups/index.html', {
@@ -59,9 +60,10 @@ def SignUp(request, ):
     else:
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            form.save()
-            user = form.cleaned_data.get('username')
-            messages.success(request, 'You successfully signed up for meetups ' + user)
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, 'You successfully signed up for meetups ' + username)
+            Paticipants.objects.create(user=user)
             return redirect('events-sign-in')
 
         return render(request, 'meetups/sessions/signup.html', {'form':form})
