@@ -12,7 +12,7 @@ from django.contrib.auth.models import Group, User
 
 # Create your views here.
 @login_required(login_url='events-sign-in')
-@allowed_user(allowed_roles=['admin', ])
+# @allowed_user(allowed_roles=['admin', 'paticipants', ])
 def home_page(request):
     events = Event.objects.all()
     return render(request, 'meetups/index.html', {
@@ -33,7 +33,6 @@ def event_details(request, event_slug):
             participant, _  = Paticipants.objects.get_or_create(name=participant_name, email=participant_email)
             selected_event.participants.add(participant)
             User = User.objects.get_or_create(name=participant_name, email=participant_email)
-            selected_event.participants.add(participant)
 
 
 
@@ -66,7 +65,7 @@ def SignUp(request, ):
             Paticipants.objects.create(user=user)
             return redirect('events-sign-in')
 
-        return render(request, 'meetups/sessions/signup.html', {'form':form})
+    return render(request, 'meetups/sessions/signup.html', {'form':form})
 
 @unauthorisedUser
 def SignInPage(request, ):
