@@ -13,7 +13,7 @@ class Paticipants(models.Model):
     profile_pic = models.ImageField(null=True, blank=True)
 
     def __str__(self) -> str:
-        return self.user.first_name
+        return f'{self.user.first_name}/ {self.email}'
 
 
 class Locations(models.Model):
