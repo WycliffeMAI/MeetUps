@@ -61,7 +61,6 @@ def SignUp(request, ):
             user = form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, 'You successfully signed up for meetups ' + username)
-            Paticipants.objects.create(user=user)
             return redirect('events-sign-in')
 
     return render(request, 'meetups/sessions/signup.html', {'form':form})
@@ -78,7 +77,7 @@ def SignInPage(request, ):
             return redirect('home-page')
         else:
             messages.info(request, 'username or password is incorrect!')
-        user = authenticate(request, username=username, password=password)
+        # user = authenticate(request, username=username, password=password)
     return render(request, 'meetups/sessions/login.html')
 
 def logoutuser(request, ):
