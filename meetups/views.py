@@ -11,7 +11,7 @@ from .decorators import unauthorisedUser, allowed_user
 from django.contrib.auth.models import Group, User
 
 # Create your views here.
-@login_required(login_url='events-sign-in')
+# @login_required(login_url='events-sign-in')
 # @allowed_user(allowed_roles=['admin', 'paticipants', ])
 def home_page(request):
     events = Event.objects.all()
@@ -32,8 +32,7 @@ def event_details(request, event_slug):
             participant_name = form.cleaned_data['name']
             participant, _  = Paticipants.objects.get_or_create(name=participant_name, email=participant_email)
             selected_event.participants.add(participant)
-            User = User.objects.get_or_create(name=participant_name, email=participant_email)
-
+            # User = User.objects.get_or_create(name=participant_name, email=participant_email)
 
 
             reverse_to = reverse('successful-registration', args= [event_slug])
