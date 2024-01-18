@@ -25,14 +25,6 @@ SECRET_KEY = "django-insecure-swsh3$%rnwrkmjqcute)b^8_c!(du!8*j$j^+258_r%hzzcwzj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-#SMTP Configuration
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_POST = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER ='wyclifeochieng96@gmail.com'
-EMAIL_HOST_PASSWORD = 'hkvx uync wshw mjtm'
-
 
 ALLOWED_HOSTS = []
 
@@ -132,6 +124,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_ROOT = BASE_DIR / 'uploads'
 MEDIA_URL = '/files/'
+
+#SMTP Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'odundoklife1@gmail.com'
+EMAIL_HOST_PASSWORD = 'mrll iriu lsce fzhq'
 
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

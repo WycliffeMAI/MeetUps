@@ -88,6 +88,3 @@ def logoutuser(request, ):
 def userProfile(request, ):
     return render(request, 'meetups/user.html')
 
-
-class PasswordResetView:
-    template_name = 'registration/password_reset_form.html'
